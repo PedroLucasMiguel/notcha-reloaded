@@ -1,10 +1,10 @@
 import React from "react";
 import {
-    Text,
+  Text,
 } from 'react-native'
 
 export default function UserTodos() {
-    return(
-        <Text>Hello From todos</Text>
-    );
+  return(
+    <Text>Hello From todos</Text>
+  );
 }

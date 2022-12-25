@@ -21,7 +21,7 @@ export default function app() {
   return(
     <NavigationContainer>
       <Stack.Navigator screenOptions={{headerStyle: {backgroundColor: "#3700B3"}, headerTintColor: "#FFFFFF", headerBackVisible: false}}>
-        <Stack.Screen name="Login" options={{title: "Welcome to Notcha!"}} component={LoginScreen}/>
+        <Stack.Screen name="Login" options={{title: "Login"}} component={LoginScreen}/>
         <Stack.Screen name="MainScreenNavigation" options={{title: "UserSpace"}} component={MainScreenNavigation}/>
       </Stack.Navigator>
     </NavigationContainer>
