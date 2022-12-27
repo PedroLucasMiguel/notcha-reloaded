@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { createContext, useContext } from 'react';
 import {
   SafeAreaView,
   ScrollView,
@@ -14,17 +14,25 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import LoginScreen from './screens/LoginScreen';
 import MainScreenNavigation from './screens/MainScreenNavigation';
+import { MaterialColors } from './resources/MaterialColors';
 
 const Stack = createNativeStackNavigator();
+export const DarkThemeContext = createContext(true);
 
 export default function app() {
+
+  const darktheme = useContext(DarkThemeContext);
+
   return(
-    <NavigationContainer>
-      <Stack.Navigator screenOptions={{headerStyle: {backgroundColor: "#3700B3"}, headerTintColor: "#FFFFFF", headerBackVisible: false}}>
-        <Stack.Screen name="Login" options={{title: "Login"}} component={LoginScreen}/>
-        <Stack.Screen name="MainScreenNavigation" options={{title: "UserSpace"}} component={MainScreenNavigation}/>
-      </Stack.Navigator>
-    </NavigationContainer>
+    <DarkThemeContext.Provider value={true}>
+      <StatusBar backgroundColor={darktheme ? MaterialColors.PrimaryBlack : MaterialColors.Primary200}/>
+      <NavigationContainer>
+        <Stack.Navigator screenOptions={{headerStyle: {backgroundColor: darktheme ? MaterialColors.SecondaryBlack : MaterialColors.Primary500}, headerTintColor: darktheme ? MaterialColors.WhiteText : MaterialColors.WhiteText, headerBackVisible: false}}>
+          <Stack.Screen name="Login" options={{title: "Login"}} component={LoginScreen}/>
+          <Stack.Screen name="MainScreenNavigation" options={{title: "W.I.P"}} component={MainScreenNavigation}/>
+        </Stack.Navigator>
+      </NavigationContainer>
+    </DarkThemeContext.Provider>
   );
 }
 

@@ -1,52 +1,59 @@
 // From: https://stackoverflow.com/questions/43380260/draw-horizontal-rule-in-react-native
 import React, { useContext, useState, useEffect } from 'react'
 import { View, Text, StyleSheet } from 'react-native'
-import { AppContext } from '../../Context';
+import { MaterialColors } from '../MaterialColors';
+
 
 export default function Separator(props) {
+
+  let line_style;
+  let text_style;
+
+  if(props.darktheme) {
+    line_style = Styles.DtLine;
+    text_style = Styles.DtText;
+  } else {
+    line_style = Styles.WtLine;
+    text_style = Styles.WtText;
+  }
+
   return(
-    <View style={{
-        flexDirection: 'row', 
-        alignItems: 'center',
-        paddingTop: props.padding,
-        paddingBottom: props.padding,
-      }}
-    >
-      <View style={Styles.wt_line} />
+    <View style={[{ flexDirection: 'row', alignItems: 'center', paddingTop: 10,paddingBottom: 10,}, props.style]}>
+      <View style={line_style}/>
       <View>
-        <Text style={Styles.wt_text}>
+        <Text style={text_style}>
           {props.text}
         </Text>
       </View>
-      <View style={Styles.wt_line} />
+      <View style={line_style}/>
     </View>
   );
 }
 
 const Styles = StyleSheet.create({
-  wt_text: {
+  WtText: {
     width: 60,
     fontSize: 20, 
-    textAlign: 'center',
-    color: '#000000',
+    textAlign: "center",
+    color: MaterialColors.SecondaryBlack,
   },
 
-  wt_line: {
+  WtLine: {
     flex: 1, 
     height: 1, 
-    backgroundColor: '#000000'
+    backgroundColor: MaterialColors.SecondaryBlack,
   },
   
-  dt_line: {
+  DtLine: {
     flex: 1, 
     height: 1, 
-    backgroundColor: '#FFFFFF'
+    backgroundColor: MaterialColors.Primary200,
   },
 
-  dt_text: {
+  DtText: {
     width: 60,
     fontSize: 20, 
-    textAlign: 'center',
-    color: '#FFFFFF',
+    textAlign: "center",
+    color: MaterialColors.Primary200,
   },
 });
