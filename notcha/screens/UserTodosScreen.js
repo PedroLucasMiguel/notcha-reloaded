@@ -14,7 +14,7 @@ import { AppContext } from "../Context";
 import { IconButton } from "../resources/components/MaterialComponents";
 import { MaterialColors } from "../resources/MaterialColors";
 
-export default function UserNotes() {
+export default function UserTodos({ navigation }) {
 
   const darkTheme = useContext(AppContext).darkTheme;
   const [extendFab1, setExtendFab1] = useState(false);
@@ -44,7 +44,7 @@ export default function UserNotes() {
           { height: Dimensions.get("window").height }
         ]}
       >
-        <IconButton title="Teste" iconName="checkbox-marked" onPress={() => console.log("Press")} onLongPress={() => console.log("Long Pres")} />
+        <IconButton title="Teste" iconName="checkbox-marked" onPress={() => navigation.navigate("TodoEditor")} onLongPress={() => console.log("Long Pres")} />
         <IconButton title="Teste" iconName="checkbox-marked" onPress={() => console.log("Press")} onLongPress={() => console.log("Long Pres")} />
         <IconButton title="Teste" iconName="checkbox-marked" onPress={() => console.log("Press")} onLongPress={() => console.log("Long Pres")} />
         <IconButton title="Teste" iconName="checkbox-marked" onPress={() => console.log("Press")} onLongPress={() => console.log("Long Pres")} />

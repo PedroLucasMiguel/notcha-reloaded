@@ -7,6 +7,7 @@ import LoginScreen from "./screens/LoginScreen";
 import MainScreenNavigation from "./screens/MainScreenNavigation";
 import { MaterialColors } from "./resources/MaterialColors";
 import AppContextProvider from "./Context";
+import TodoEditor from "./screens/editors/TodoEditor";
 
 const Stack = createNativeStackNavigator();
 
@@ -31,6 +32,14 @@ export default function app() {
               name="MainScreenNavigation" 
               options={{ title: "Notcha!" }} 
               component={ MainScreenNavigation }
+            />
+            <Stack.Screen
+              name="TodoEditor"
+              options={{ 
+                title: "Todo editor",
+                headerBackVisible: true
+              }}
+              component={ TodoEditor }
             />
           </Stack.Navigator>
         </NavigationContainer>

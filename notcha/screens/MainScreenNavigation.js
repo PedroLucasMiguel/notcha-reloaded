@@ -1,9 +1,9 @@
 import React, { useContext } from "react";
 import { Image } from "react-native";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
-import UserNotes from "./UserNotes";
-import UserTodos from "./UserTodos";
-import UserSettings from "./UserSettings";
+import UserNotes from "./UserNotesScreen";
+import UserTodos from "./UserTodosScreen";
+import UserSettings from "./UserSettingsScreen";
 import { MaterialColors } from "../resources/MaterialColors";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { StyleSheet } from "react-native";
