@@ -1,6 +1,6 @@
-import {Text, TouchableHighlight, StyleSheet, View, Dimensions, VirtualizedList } from "react-native";
+import {Text, TouchableHighlight, StyleSheet, View } from "react-native";
 import { MaterialColors } from "../MaterialColors";
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 
 export function PrimaryButton(props) {
 
@@ -16,24 +16,54 @@ export function PrimaryButton(props) {
   }
 
   return(
-    <TouchableHighlight style={[button_style, props.style]} onPress={props.onPress}>
-        <Text style={text_style}>{props.title}</Text>    
+    <TouchableHighlight 
+      style={ [button_style, props.style] } 
+      onPress={ props.onPress }
+    >
+        <Text style={ text_style }>{ props.title }</Text>    
     </TouchableHighlight>
   );
 }
 
 export function IconButton(props) {
   return(
-    <TouchableHighlight onLongPress={props.onLongPress} onPress={props.onPress} style={{backgroundColor: MaterialColors.Primary500, justifyContent:"center", marginBottom: 15, borderRadius:10}}>
-      <View style={{flexDirection: "row", borderRadius:10}}>
-        <MaterialCommunityIcons name={props.iconName} color={MaterialColors.SolidWhite} size={45} style={{alignSelf: "center"}}/>
-        <Text style={[Styles.WtText, {fontSize: 25, paddingLeft: 10, fontWeight: "normal"}]}>{props.title}</Text>
+    <TouchableHighlight 
+      onLongPress={ props.onLongPress } 
+      onPress={ props.onPress } 
+      style={{
+        backgroundColor: MaterialColors.Primary500, 
+        justifyContent:"center", 
+        marginBottom: 15, 
+        borderRadius:10
+      }}
+    >
+      <View style={{
+        flexDirection: "row", 
+        borderRadius:10
+        }}
+      >
+        <MaterialCommunityIcons 
+          name={ props.iconName } 
+          color={ MaterialColors.SolidWhite } 
+          size={ 45 } 
+          style={{ alignSelf: "center" }}
+        />
+        <Text style={[
+          Styles.WtText, 
+          {
+            fontSize: 25, 
+            paddingLeft: 10, 
+            fontWeight: "normal"
+          }
+          ]}
+        >{ props.title }</Text>
       </View>
     </TouchableHighlight>
   );
 }
 
 const Styles = StyleSheet.create({
+  
   WtPrimaryButton: {
     backgroundColor: MaterialColors.Primary500,
     height: 60,

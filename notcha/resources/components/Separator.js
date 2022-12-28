@@ -1,7 +1,7 @@
 // From: https://stackoverflow.com/questions/43380260/draw-horizontal-rule-in-react-native
-import React, { useContext, useState, useEffect } from 'react'
-import { View, Text, StyleSheet } from 'react-native'
-import { MaterialColors } from '../MaterialColors';
+import React, { useContext, useState, useEffect } from "react"
+import { View, Text, StyleSheet } from "react-native"
+import { MaterialColors } from "../MaterialColors";
 
 
 export default function Separator(props) {
@@ -18,19 +18,29 @@ export default function Separator(props) {
   }
 
   return(
-    <View style={[{ flexDirection: 'row', alignItems: 'center', paddingTop: 10,paddingBottom: 10,}, props.style]}>
-      <View style={line_style}/>
+    <View style={[
+      { 
+        flexDirection: "row", 
+        alignItems: "center", 
+        paddingTop: 10, 
+        paddingBottom: 10,
+      }, 
+      props.style
+      ]}
+    >
+      <View style={ line_style }/>
       <View>
-        <Text style={text_style}>
-          {props.text}
+        <Text style={ text_style }>
+          { props.text }
         </Text>
       </View>
-      <View style={line_style}/>
+      <View style={ line_style }/>
     </View>
   );
 }
 
 const Styles = StyleSheet.create({
+  
   WtText: {
     width: 60,
     fontSize: 20, 

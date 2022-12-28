@@ -8,5 +8,5 @@ export const MaterialColors = {
     WhiteText: "#FFFFFF",
     BlackText: "#000000",
     SolidWhite: "#FFFFFF",
-    BackgroundWhite: "#f2f2f2"
+    BackgroundWhite: "#f2f2f2",
 }

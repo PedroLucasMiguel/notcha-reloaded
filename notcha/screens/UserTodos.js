@@ -1,15 +1,17 @@
-import React, { useContext, useState } from "react";
+import React, { 
+  useContext, 
+  useState 
+} from "react";
 import {
   Dimensions,
   ScrollView,
   StyleSheet,
   Text,
   View,
-} from 'react-native'
-import { AnimatedFAB, FAB, Portal } from "react-native-paper";
+} from "react-native"
+import { AnimatedFAB } from "react-native-paper";
 import { AppContext } from "../Context";
-import { Fab, IconButton, PrimaryButton } from "../resources/components/MaterialComponents";
-import Separator from "../resources/components/Separator";
+import { IconButton } from "../resources/components/MaterialComponents";
 import { MaterialColors } from "../resources/MaterialColors";
 
 export default function UserNotes() {
@@ -33,9 +35,15 @@ export default function UserNotes() {
   }
 
   return(
-    <View style={view_style}>
-      <Text style={title_style}>Your Todos</Text>
-      <ScrollView persistentScrollbar={false} style={[sview_style, {height: Dimensions.get("window").height}]}>
+    <View style={ view_style }>
+      <Text style={ title_style }>Your Todos</Text>
+      <ScrollView 
+        persistentScrollbar={ false } 
+        style={[
+          sview_style, 
+          { height: Dimensions.get("window").height }
+        ]}
+      >
         <IconButton title="Teste" iconName="checkbox-marked" onPress={() => console.log("Press")} onLongPress={() => console.log("Long Pres")} />
         <IconButton title="Teste" iconName="checkbox-marked" onPress={() => console.log("Press")} onLongPress={() => console.log("Long Pres")} />
         <IconButton title="Teste" iconName="checkbox-marked" onPress={() => console.log("Press")} onLongPress={() => console.log("Long Pres")} />
@@ -56,18 +64,36 @@ export default function UserNotes() {
       <AnimatedFAB
           icon="plus"
           label="Create a new note"
-          extended={extendFab1}
-          style={{position:"absolute", top:Dimensions.get("window").height-200, right: 5, zIndex: 20}}
-          onLongPress={() => setExtendFab1(s => !s)}
-          onPress={() => console.log("Do Stuff")}
+          extended={ extendFab1 }
+          style={{ 
+            position:"absolute", 
+            top:Dimensions.get("window").height-200, 
+            right: 5, 
+            zIndex: 20
+          }}
+          onLongPress={
+            () => setExtendFab1(s => !s)
+          }
+          onPress={
+            () => console.log("Do Stuff")
+          }
       />
       <AnimatedFAB
           icon="magnify"
           label="Search"
-          extended={extendFab2}
-          style={{position:"absolute", top:Dimensions.get("window").height-280, right: 5, zIndex: 20}}
-          onLongPress={() => setExtendFab2(s => !s)}
-          onPress={() => console.log("Do Stuff")}
+          extended={ extendFab2 }
+          style={{
+            position:"absolute", 
+            top:Dimensions.get("window").height-280, 
+            right: 5, 
+            zIndex: 20,
+          }}
+          onLongPress={
+            () => setExtendFab2(s => !s)
+          }
+          onPress={
+            () => console.log("Do Stuff")
+          }
       />
     </View>
   );
@@ -78,13 +104,12 @@ const Styles = StyleSheet.create({
   WtView: {
     backgroundColor: MaterialColors.BackgroundWhite,
     paddingTop: 10,
-    paddingHorizontal: 10,
-    flexGrow: 1,
+    paddingHorizontal: 20,
   },
 
   WtScrollView: {
     backgroundColor: MaterialColors.BackgroundWhite,
-    marginTop: 10,
+    marginTop: 15,
   },
 
   DtScrollView: {

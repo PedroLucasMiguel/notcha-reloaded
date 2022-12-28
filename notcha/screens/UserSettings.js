@@ -3,12 +3,12 @@ import {
   Switch,
   Text,
   View,
-} from 'react-native'
-import { AppContext } from '../Context';
+} from "react-native"
+import { AppContext } from "../Context";
 
 export default function UserSettings() {
 
-  const {darkTheme, setDarkTheme} = useContext(AppContext);
+  const { darkTheme, setDarkTheme } = useContext(AppContext);
   const [dtSwitchIsEnable, setDtSwitchIsEnable] = useState(darkTheme);
 
   return(
