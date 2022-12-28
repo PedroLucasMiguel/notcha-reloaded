@@ -9,7 +9,7 @@ export default function Separator(props) {
   let line_style;
   let text_style;
 
-  if(props.darktheme) {
+  if(props.darkTheme) {
     line_style = Styles.DtLine;
     text_style = Styles.DtText;
   } else {
@@ -47,13 +47,13 @@ const Styles = StyleSheet.create({
   DtLine: {
     flex: 1, 
     height: 1, 
-    backgroundColor: MaterialColors.Primary200,
+    backgroundColor: MaterialColors.SolidWhite,
   },
 
   DtText: {
     width: 60,
     fontSize: 20, 
     textAlign: "center",
-    color: MaterialColors.Primary200,
+    color: MaterialColors.WhiteText,
   },
 });

@@ -4,18 +4,18 @@ import UserNotes from "./UserNotes";
 import UserTodos from "./UserTodos";
 import UserSettings from "./UserSettings";
 import { MaterialColors } from "../resources/MaterialColors";
-import { DarkThemeContext } from "../App";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { StyleSheet } from "react-native";
+import { AppContext } from '../Context';
 
 const Tab = createBottomTabNavigator();
 
 export default function MainScreenNavigation() {
 
-  let darktheme = useContext(DarkThemeContext);
+  let darkTheme = useContext(AppContext).darkTheme;
 
   return(
-    <Tab.Navigator screenOptions={{headerShown: false, tabBarStyle: darktheme ? Styles.DtTabBarStyle : Styles.WtTabBarStyle, tabBarActiveTintColor: darktheme ? MaterialColors.Primary200 : MaterialColors.WhiteText}}>
+    <Tab.Navigator screenOptions={{headerShown: false, tabBarStyle: darkTheme ? Styles.DtTabBarStyle : Styles.WtTabBarStyle, tabBarActiveTintColor: darkTheme ? MaterialColors.SolidWhite : MaterialColors.Primary500}}>
       <Tab.Screen name="Notes" component={UserNotes} options={{tabBarLabelStyle: {fontSize: 15}, tabBarIcon: ({color}) => (<MaterialCommunityIcons name="notebook-edit" color={color} size={28}/>)}}/>
       <Tab.Screen name="Todo" component={UserTodos} options={{tabBarLabelStyle: {fontSize: 15}, tabBarIcon: ({color}) => (<MaterialCommunityIcons name="checkbox-marked" color={color} size={28}/>)}}/>
       <Tab.Screen name="Settings" component={UserSettings} options={{tabBarLabelStyle: {fontSize: 15}, tabBarIcon: ({color}) => (<MaterialCommunityIcons name="cog" color={color} size={28}/>)}}/>
@@ -25,7 +25,7 @@ export default function MainScreenNavigation() {
 
 const Styles = StyleSheet.create({
   WtTabBarStyle: {
-    backgroundColor: MaterialColors.Primary500,
+    backgroundColor: MaterialColors.SolidWhite,
     height: 60,
   },
 

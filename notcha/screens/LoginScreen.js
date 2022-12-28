@@ -1,25 +1,29 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import { 
     ScrollView,
     StyleSheet,
     Text,
     View,
     Image, 
-    Button
+    Button,
+    Dimensions
 } from 'react-native'
 import Separator from '../resources/components/Separator'
 import { PrimaryButton } from '../resources/components/MaterialComponents'
 import { DarkThemeContext } from '../App'
 import { MaterialColors } from '../resources/MaterialColors'
+import { AppContext } from '../Context'
+import { AnimatedFAB } from 'react-native-paper'
 
 export default function LoginScreen({navigation}) {
 
-  const darktheme = useContext(DarkThemeContext);
+  const darkTheme = useContext(AppContext).darkTheme;
+  const [fabExpand, setFabExpand] = useState(false);
 
   let view_style;
   let title_style;
 
-  if (darktheme) {
+  if (darkTheme) {
     view_style = Styles.DtLoginView;
     title_style = Styles.DtLoginTitle;
   } else {
@@ -28,16 +32,22 @@ export default function LoginScreen({navigation}) {
   }
 
   return (
-    <ScrollView style={darktheme ? {backgroundColor: MaterialColors.PrimaryBlack} : {}}>
-      <View style={view_style}>
-        <Text style={title_style}> Welcome to Notcha! </Text>
-        <Image source={require("../resources/images/temp_logo.png")} style={Styles.AppLogo}/>
-        <PrimaryButton darktheme={darktheme} title="Login with Google" style={Styles.Buttons} onPress={() => navigation.navigate("MainScreenNavigation")}/>
-        <Separator darktheme={darktheme} text="or"/>
-        <PrimaryButton darktheme={darktheme} title="Use Offline" style={Styles.Buttons} onPress={() => navigation.navigate("MainScreenNavigation")}/>
-      </View>
-    </ScrollView>
-  )
+    <View style={view_style}>
+      <Text style={title_style}> Welcome to Notcha! </Text>
+      <Image source={require("../resources/images/temp_logo.png")} style={Styles.AppLogo}/>
+      <PrimaryButton darkTheme={darkTheme} title="Login with Google" style={Styles.Buttons} onPress={() => navigation.navigate("MainScreenNavigation")}/>
+      <Separator darkTheme={darkTheme} text="or"/>
+      <PrimaryButton darkTheme={darkTheme} title="Use Offline" style={Styles.Buttons} onPress={() => navigation.navigate("MainScreenNavigation")}/>
+      <AnimatedFAB
+          icon="information-outline"
+          label="About this app"
+          extended={fabExpand}
+          style={{position:"absolute", top:Dimensions.get("window").height-160, right: 15, zIndex: 20}}
+          onPress={() => console.log("Do Stuff")}
+          onLongPress={() => setFabExpand(s => !s)}
+      />
+    </View>
+  );
 }
 
 const Styles = StyleSheet.create({
@@ -46,6 +56,7 @@ const Styles = StyleSheet.create({
     justifyContent: "center",
     paddingLeft: 20,
     paddingRight: 20,
+    backgroundColor: MaterialColors.BackgroundWhite,
   },
 
   DtLoginView: {
@@ -66,7 +77,7 @@ const Styles = StyleSheet.create({
   DtLoginTitle: {
     fontSize: 30,
     fontWeight: "bold",
-    color: MaterialColors.Primary200,
+    color: MaterialColors.WhiteText,
     alignSelf: "center",
   },
 
