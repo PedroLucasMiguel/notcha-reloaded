@@ -8,6 +8,8 @@ import MainScreenNavigation from "./screens/MainScreenNavigation";
 import { MaterialColors } from "./resources/MaterialColors";
 import AppContextProvider from "./Context";
 import TodoEditor from "./screens/editors/TodoEditor";
+import NoteEditor from "./screens/editors/NoteEditor";
+import AboutScreen from "./screens/AboutScreen";
 
 const Stack = createNativeStackNavigator();
 
@@ -40,6 +42,23 @@ export default function app() {
                 headerBackVisible: true
               }}
               component={ TodoEditor }
+            />
+            <Stack.Screen
+              name="NoteEditor"
+              options={{ 
+                title: "Note editor",
+                headerBackVisible: true,
+                animation: 'none',
+              }}
+              component={ NoteEditor }
+            />
+            <Stack.Screen
+              name="AboutScreen"
+              options={{ 
+                title: "About",
+                headerBackVisible: true,
+              }}
+              component={ AboutScreen }
             />
           </Stack.Navigator>
         </NavigationContainer>

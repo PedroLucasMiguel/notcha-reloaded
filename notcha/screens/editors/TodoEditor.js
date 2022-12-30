@@ -1,10 +1,11 @@
-import { useContext, useState } from "react";
-import { Dimensions, ScrollView, StyleSheet, Text, View } from "react-native";
+import { useContext, useEffect, useState } from "react";
+import { Dimensions, ScrollView, StyleSheet, ToastAndroid, TouchableHighlight, View } from "react-native";
 import { TextInput } from "react-native-paper";
 import { AppContext } from "../../Context";
 import { PrimaryButton } from "../../resources/components/MaterialComponents";
 import BouncyCheckbox from "react-native-bouncy-checkbox";
 import { MaterialColors } from "../../resources/MaterialColors";
+import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 
 function TodoCheckBox(props) {
 
@@ -12,33 +13,67 @@ function TodoCheckBox(props) {
   const [isChecked, setIsChecked] = useState(props.checked);
 
   return (
-    <View style={{ marginVertical: 10}}>
-      <BouncyCheckbox
-        size={ 40 }
-        fillColor={ MaterialColors.Primary200 }
-        unfillColor="#FFFFFF"
-        text={ props.title }
-        iconStyle={{ borderColor: "red" }}
-        innerIconStyle={{ borderWidth: 5 }}
-        textStyle={{ 
-          fontSize: 25, 
-          color: darkTheme ? MaterialColors.WhiteText : MaterialColors.BlackText
-        }}
-        onPress={
-          () => setIsChecked(s => !s)
+    <View style={{ 
+      marginVertical: 10, 
+      flexDirection: "row", 
+      }}
+    >
+      <View style={{ width: Dimensions.get("window").width/1.2 }}>
+        <BouncyCheckbox
+          size={ 40 }
+          fillColor={ MaterialColors.Primary200 }
+          unfillColor="#FFFFFF"
+          text={ props.title }
+          iconStyle={{ borderColor: "red" }}
+          innerIconStyle={{ borderWidth: 5 }}
+          textStyle={{ 
+            fontSize: 25, 
+            color: darkTheme ? MaterialColors.WhiteText : MaterialColors.BlackText
+          }}
+          onPress={
+            () => setIsChecked(s => !s)
+          }
+          isChecked={ isChecked }
+        />
+      </View>
+      <TouchableHighlight onPress={
+        () => {
+          ToastAndroid.show("W.I.P", ToastAndroid.SHORT);
         }
-        isChecked={ isChecked }
-      />
+      }>
+        <MaterialCommunityIcons name="close-thick" color={ darkTheme ? MaterialColors.SolidWhite : MaterialColors.PrimaryBlack } size={ 28 }/>
+      </TouchableHighlight>
     </View>
   )
 }
 
-export default function TodoEditor() {
+export default function TodoEditor({ route, navigation }) {
+
+  let fakeData = undefined;
+
+  if (route.params !== undefined)
+    fakeData = route.params.fakeData;
 
   const darkTheme = useContext(AppContext).darkTheme;
-  const [todoListName, setTodoListName] = useState("");
+  const [todoListName, setTodoListName] = useState((fakeData !== undefined) ? fakeData.title : "");
   const [itemName, setItemName] = useState("");
   const [items, setItems] = useState([]);
+
+  useEffect(() => {
+    console.log(fakeData)
+    if (fakeData !== undefined) {
+      let temp = [];
+      for (const key in fakeData.items) {
+        temp.push(<TodoCheckBox 
+          checked={ fakeData.items[key] } 
+          darkTheme={ darkTheme } 
+          title={ key } 
+          key={ temp.length + 1 }
+        />)
+      }
+      setItems(temp);
+    }
+  }, [])
 
   let view_theme = darkTheme ? Styles.DtBackgroundColor : Styles.WtBackgroundColor;
 

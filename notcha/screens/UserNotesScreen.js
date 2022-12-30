@@ -3,10 +3,12 @@ import React, {
   useState 
 } from "react";
 import {
+  Alert,
   Dimensions,
   ScrollView,
   StyleSheet,
   Text,
+  ToastAndroid,
   View,
 } from "react-native"
 import { AnimatedFAB } from "react-native-paper";
@@ -14,7 +16,36 @@ import { AppContext } from "../Context";
 import { IconButton } from "../resources/components/MaterialComponents";
 import { MaterialColors } from "../resources/MaterialColors";
 
-export default function UserNotes() {
+function generateFakeButtons(n, navigation) {
+  let btns = []
+
+  for(let i = 0; i < n; i++) {
+    btns.push(
+      <IconButton 
+        title={"Fake " + (i+1)} 
+        iconName="notebook-edit" 
+        onPress={() => navigation.navigate("NoteEditor")} 
+        onLongPress={
+          () => Alert.alert(
+            "Fake " + (i+1), 
+            "Do you want to remove this note?", 
+            [
+              {
+                text: "Yes", 
+                onPress: () => ToastAndroid.show("W.I.P", ToastAndroid.SHORT)
+              },
+              { text: "No" }
+            ]
+          )
+        }
+      />
+    )
+  }
+
+  return btns;
+}
+
+export default function UserNotes({ navigation }) {
 
   const darkTheme = useContext(AppContext).darkTheme;
   const [extendFab1, setExtendFab1] = useState(false);
@@ -41,25 +72,35 @@ export default function UserNotes() {
         persistentScrollbar={ false } 
         style={[
           sview_style, 
-          { height: Dimensions.get("window").height }
+          { height: Dimensions.get("window").height-130 }
         ]}
       >
-        <IconButton title="Teste" iconName="notebook-edit" onPress={() => console.log("Press")} onLongPress={() => console.log("Long Pres")} />
-        <IconButton title="Teste" iconName="notebook-edit" onPress={() => console.log("Press")} onLongPress={() => console.log("Long Pres")} />
-        <IconButton title="Teste" iconName="notebook-edit" onPress={() => console.log("Press")} onLongPress={() => console.log("Long Pres")} />
-        <IconButton title="Teste" iconName="notebook-edit" onPress={() => console.log("Press")} onLongPress={() => console.log("Long Pres")} />
-        <IconButton title="Teste" iconName="notebook-edit" onPress={() => console.log("Press")} onLongPress={() => console.log("Long Pres")} />
-        <IconButton title="Teste" iconName="notebook-edit" onPress={() => console.log("Press")} onLongPress={() => console.log("Long Pres")} />
-        <IconButton title="Teste" iconName="notebook-edit" onPress={() => console.log("Press")} onLongPress={() => console.log("Long Pres")} />
-        <IconButton title="Teste" iconName="notebook-edit" onPress={() => console.log("Press")} onLongPress={() => console.log("Long Pres")} />
-        <IconButton title="Teste" iconName="notebook-edit" onPress={() => console.log("Press")} onLongPress={() => console.log("Long Pres")} />
-        <IconButton title="Teste" iconName="notebook-edit" onPress={() => console.log("Press")} onLongPress={() => console.log("Long Pres")} />
-        <IconButton title="Teste" iconName="notebook-edit" onPress={() => console.log("Press")} onLongPress={() => console.log("Long Pres")} />
-        <IconButton title="Teste" iconName="notebook-edit" onPress={() => console.log("Press")} onLongPress={() => console.log("Long Pres")} />
-        <IconButton title="Teste" iconName="notebook-edit" onPress={() => console.log("Press")} onLongPress={() => console.log("Long Pres")} />
-        <IconButton title="Teste" iconName="notebook-edit" onPress={() => console.log("Press")} onLongPress={() => console.log("Long Pres")} />
-        <IconButton title="Teste" iconName="notebook-edit" onPress={() => console.log("Press")} onLongPress={() => console.log("Long Pres")} />
-        <IconButton title="Teste" iconName="notebook-edit" onPress={() => console.log("Press")} onLongPress={() => console.log("Long Pres")} />
+        <IconButton 
+          title="Nomes" 
+          iconName="notebook-edit" 
+          onPress={
+            () => navigation.navigate("NoteEditor", {
+              fakeData: {
+                title: "Nomes",
+                content: "Ana<br>Julia<br>Pedro"
+              }
+            })
+          } 
+          onLongPress={
+            () => Alert.alert(
+              "Nomes", 
+              "Do you want to remove this note?", 
+              [
+                {
+                  text: "Yes", 
+                  onPress: () => ToastAndroid.show("W.I.P", ToastAndroid.SHORT)
+                },
+                { text: "No" }
+              ]
+            )
+          }
+        />
+        { generateFakeButtons(10, navigation) }
       </ScrollView>
       <AnimatedFAB
           icon="plus"
@@ -75,7 +116,7 @@ export default function UserNotes() {
             () => setExtendFab1(s => !s)
           }
           onPress={
-            () => console.log("Do Stuff")
+            () => navigation.navigate("NoteEditor")
           }
       />
       <AnimatedFAB
@@ -92,7 +133,7 @@ export default function UserNotes() {
             () => setExtendFab2(s => !s)
           }
           onPress={
-            () => console.log("Do Stuff")
+            () => ToastAndroid.show("W.I.P", ToastAndroid.SHORT)
           }
       />
     </View>

@@ -3,16 +3,47 @@ import React, {
   useState 
 } from "react";
 import {
+  Alert,
   Dimensions,
   ScrollView,
   StyleSheet,
   Text,
+  ToastAndroid,
   View,
 } from "react-native"
 import { AnimatedFAB } from "react-native-paper";
 import { AppContext } from "../Context";
 import { IconButton } from "../resources/components/MaterialComponents";
 import { MaterialColors } from "../resources/MaterialColors";
+
+function generateFakeButtons(n, navigation) {
+  let btns = []
+
+  for(let i = 0; i < n; i++) {
+    btns.push(
+      <IconButton 
+        title={"Fake " + (i+1)} 
+        iconName="checkbox-marked" 
+        onPress={() => navigation.navigate("TodoEditor")} 
+        onLongPress={
+          () => Alert.alert(
+            "Fake " + (i+1), 
+            "Do you want to remove this todo list?", 
+            [
+              {
+                text: "Yes", 
+                onPress: () => ToastAndroid.show("W.I.P", ToastAndroid.SHORT)
+              },
+              { text: "No" }
+            ]
+          )
+        }
+      />
+    )
+  }
+
+  return btns;
+}
 
 export default function UserTodos({ navigation }) {
 
@@ -40,26 +71,42 @@ export default function UserTodos({ navigation }) {
       <ScrollView 
         persistentScrollbar={ false } 
         style={[
-          sview_style, 
-          { height: Dimensions.get("window").height }
+          sview_style,
+          { height: Dimensions.get("window").height-130 } 
         ]}
       >
-        <IconButton title="Teste" iconName="checkbox-marked" onPress={() => navigation.navigate("TodoEditor")} onLongPress={() => console.log("Long Pres")} />
-        <IconButton title="Teste" iconName="checkbox-marked" onPress={() => console.log("Press")} onLongPress={() => console.log("Long Pres")} />
-        <IconButton title="Teste" iconName="checkbox-marked" onPress={() => console.log("Press")} onLongPress={() => console.log("Long Pres")} />
-        <IconButton title="Teste" iconName="checkbox-marked" onPress={() => console.log("Press")} onLongPress={() => console.log("Long Pres")} />
-        <IconButton title="Teste" iconName="checkbox-marked" onPress={() => console.log("Press")} onLongPress={() => console.log("Long Pres")} />
-        <IconButton title="Teste" iconName="checkbox-marked" onPress={() => console.log("Press")} onLongPress={() => console.log("Long Pres")} />
-        <IconButton title="Teste" iconName="checkbox-marked" onPress={() => console.log("Press")} onLongPress={() => console.log("Long Pres")} />
-        <IconButton title="Teste" iconName="checkbox-marked" onPress={() => console.log("Press")} onLongPress={() => console.log("Long Pres")} />
-        <IconButton title="Teste" iconName="checkbox-marked" onPress={() => console.log("Press")} onLongPress={() => console.log("Long Pres")} />
-        <IconButton title="Teste" iconName="checkbox-marked" onPress={() => console.log("Press")} onLongPress={() => console.log("Long Pres")} />
-        <IconButton title="Teste" iconName="checkbox-marked" onPress={() => console.log("Press")} onLongPress={() => console.log("Long Pres")} />
-        <IconButton title="Teste" iconName="checkbox-marked" onPress={() => console.log("Press")} onLongPress={() => console.log("Long Pres")} />
-        <IconButton title="Teste" iconName="checkbox-marked" onPress={() => console.log("Press")} onLongPress={() => console.log("Long Pres")} />
-        <IconButton title="Teste" iconName="checkbox-marked" onPress={() => console.log("Press")} onLongPress={() => console.log("Long Pres")} />
-        <IconButton title="Teste" iconName="checkbox-marked" onPress={() => console.log("Press")} onLongPress={() => console.log("Long Pres")} />
-        <IconButton title="Teste" iconName="checkbox-marked" onPress={() => console.log("Press")} onLongPress={() => console.log("Long Pres")} />
+        <IconButton 
+          title="Compras" 
+          iconName="checkbox-marked" 
+          onPress={
+            () => navigation.navigate("TodoEditor", { 
+              fakeData: {
+                title: "Compras",
+                items: {
+                  Arroz: true,
+                  Feijão: false,
+                  Batata: true,
+                  Macarrão: true,
+                  Sabão: false
+                }
+              } 
+            })
+          } 
+          onLongPress={
+            () => Alert.alert(
+              "Compras", 
+              "Do you want to remove this todo list?", 
+              [
+                {
+                  text: "Yes", 
+                  onPress: () => ToastAndroid.show("W.I.P", ToastAndroid.SHORT)
+                },
+                { text: "No" }
+              ]
+            )
+          } 
+        />
+        { generateFakeButtons(12, navigation) }
       </ScrollView>
       <AnimatedFAB
           icon="plus"
@@ -75,7 +122,7 @@ export default function UserTodos({ navigation }) {
             () => setExtendFab1(s => !s)
           }
           onPress={
-            () => console.log("Do Stuff")
+            () => navigation.navigate("TodoEditor")
           }
       />
       <AnimatedFAB
@@ -92,7 +139,7 @@ export default function UserTodos({ navigation }) {
             () => setExtendFab2(s => !s)
           }
           onPress={
-            () => console.log("Do Stuff")
+            () => ToastAndroid.show("W.I.P", ToastAndroid.show)
           }
       />
     </View>

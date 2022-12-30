@@ -42,7 +42,7 @@ export default function Separator(props) {
 const Styles = StyleSheet.create({
   
   WtText: {
-    width: 60,
+    width: 80,
     fontSize: 20, 
     textAlign: "center",
     color: MaterialColors.SecondaryBlack,
@@ -61,7 +61,7 @@ const Styles = StyleSheet.create({
   },
 
   DtText: {
-    width: 60,
+    width: 80,
     fontSize: 20, 
     textAlign: "center",
     color: MaterialColors.WhiteText,

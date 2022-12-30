@@ -76,7 +76,7 @@ export default function LoginScreen({navigation}) {
             zIndex: 20
           }}
           onPress={
-            () => console.log("Do Stuff")
+            () => navigation.navigate("AboutScreen")
           }
           onLongPress={
             () => setFabExpand(s => !s)
