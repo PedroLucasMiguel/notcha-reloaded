@@ -11,9 +11,9 @@ import {
   ToastAndroid,
   View,
 } from "react-native"
-import { AnimatedFAB } from "react-native-paper";
+import { FAB } from "react-native-paper";
 import { AppContext } from "../Context";
-import { IconButton } from "../resources/components/MaterialComponents";
+import { ButtonOverBar, IconButton } from "../resources/components/MaterialComponents";
 import { MaterialColors } from "../resources/MaterialColors";
 
 function generateFakeButtons(n, navigation) {
@@ -22,9 +22,10 @@ function generateFakeButtons(n, navigation) {
   for(let i = 0; i < n; i++) {
     btns.push(
       <IconButton 
-        title={"Fake " + (i+1)} 
+        title={ "Fake " + (i+1) }
+        date={ ((i < 9) ? "0" : "") + (i+1) + "/01/2023" } 
         iconName="checkbox-marked" 
-        onPress={() => navigation.navigate("TodoEditor")} 
+        onPress={ () => navigation.navigate("TodoEditor") } 
         onLongPress={
           () => Alert.alert(
             "Fake " + (i+1), 
@@ -77,6 +78,7 @@ export default function UserTodos({ navigation }) {
       >
         <IconButton 
           title="Compras" 
+          date="01/01/2023"
           iconName="checkbox-marked" 
           onPress={
             () => navigation.navigate("TodoEditor", { 
@@ -106,40 +108,19 @@ export default function UserTodos({ navigation }) {
             )
           } 
         />
-        { generateFakeButtons(12, navigation) }
+        { generateFakeButtons(18, navigation) }
       </ScrollView>
-      <AnimatedFAB
-          icon="plus"
-          label="Create a new note"
-          extended={ extendFab1 }
-          style={{ 
-            position:"absolute", 
-            top:Dimensions.get("window").height-200, 
-            right: 5, 
-            zIndex: 20
-          }}
-          onLongPress={
-            () => setExtendFab1(s => !s)
-          }
-          onPress={
-            () => navigation.navigate("TodoEditor")
-          }
-      />
-      <AnimatedFAB
+      <ButtonOverBar onPress={() => navigation.navigate("TodoEditor")} darkTheme={darkTheme} />
+      <FAB
           icon="magnify"
-          label="Search"
-          extended={ extendFab2 }
           style={{
             position:"absolute", 
-            top:Dimensions.get("window").height-280, 
-            right: 5, 
-            zIndex: 20,
+            top: 10,
+            right: 10, 
+            zIndex: 20
           }}
-          onLongPress={
-            () => setExtendFab2(s => !s)
-          }
           onPress={
-            () => ToastAndroid.show("W.I.P", ToastAndroid.show)
+            () => ToastAndroid.show("W.I.P", ToastAndroid.SHORT)
           }
       />
     </View>

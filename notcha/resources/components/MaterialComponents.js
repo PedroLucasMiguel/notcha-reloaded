@@ -1,4 +1,4 @@
-import {Text, TouchableHighlight, StyleSheet, View } from "react-native";
+import {Text, TouchableHighlight, StyleSheet, View, Dimensions } from "react-native";
 import { MaterialColors } from "../MaterialColors";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 
@@ -51,14 +51,69 @@ export function IconButton(props) {
         <Text style={[
           Styles.WtText, 
           {
+            width: 160,
             fontSize: 25, 
             paddingLeft: 10, 
-            fontWeight: "normal"
+            fontWeight: "normal",
+            alignSelf:"center",
+            textAlign: "left",
           }
           ]}
         >{ props.title }</Text>
+        <Text style={[
+          Styles.WtText, 
+          {
+            fontSize: 20, 
+            paddingLeft: 20, 
+            fontWeight: "normal"
+          }
+          ]}
+        >{ props.date }</Text>
       </View>
     </TouchableHighlight>
+  );
+}
+
+export function ButtonOverBar(props) {
+  let button_style;
+  let text_color;
+
+  if (props.darkTheme) {
+    button_style = Styles.DtBOB;
+    text_color = MaterialColors.WhiteText;
+  } else {
+    button_style = Styles.WtBOB;
+    text_color = MaterialColors.Primary500;
+  }
+
+  return (
+    <View style={{
+      position: "absolute",
+      left: Dimensions.get("screen").width/3.35, 
+      top: Dimensions.get("window").height-170, 
+      zIndex: 10
+      }}
+    >
+      <TouchableHighlight
+        onPress={props.onPress}
+        style={[button_style, {
+          width: 160,
+          height: 300,
+          borderRadius: 90
+        }]}>
+          <View style={{
+            marginLeft: 70, 
+            marginTop: 5
+            }}
+          >
+            <Text style={{
+              color: text_color, 
+              fontSize: 35
+              }}
+            >+</Text>
+          </View>
+        </TouchableHighlight>
+    </View>
   );
 }
 
@@ -90,6 +145,18 @@ const Styles = StyleSheet.create({
     alignSelf: "center",
     fontWeight: "bold",
     fontSize: 20,
+  },
+
+  WtBOB: {
+    backgroundColor: MaterialColors.SolidWhite,
+    borderColor: MaterialColors.LightGray,
+    borderWidth: 1,
+  },
+
+  DtBOB: {
+    backgroundColor: MaterialColors.SecondaryBlack,
+    borderColor: MaterialColors.LightGray,
+    borderWidth: 1,
   },
 
 });
