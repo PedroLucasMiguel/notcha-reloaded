@@ -2,11 +2,17 @@ import {Text, TouchableHighlight, StyleSheet, View, Dimensions } from "react-nat
 import { MaterialColors } from "../MaterialColors";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 
+/*
+  Neste arquivo são definidos componentes que são reutilizados em várias telas da aplicação
+*/
+
+// Cria um simples botão com texto
 export function PrimaryButton(props) {
 
   let button_style;
   let text_style;
 
+  // Definição do tema
   if (props.darkTheme) {
     button_style = Styles.DtPrimaryButton;
     text_style = Styles.DtText;
@@ -74,10 +80,12 @@ export function IconButton(props) {
   );
 }
 
+// Botão que se localiza sobre a barra de navegação que é apresentada após relizar o login
 export function ButtonOverBar(props) {
   let button_style;
   let text_color;
 
+  // Definição do tema
   if (props.darkTheme) {
     button_style = Styles.DtBOB;
     text_color = MaterialColors.WhiteText;

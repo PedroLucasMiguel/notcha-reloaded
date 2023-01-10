@@ -9,13 +9,25 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { StyleSheet } from "react-native";
 import { AppContext } from "../Context";
 
+/*
+  Neste arquivo nós definimos como será a navegação do usuário após realizar o incio de sua seção
+  (online ou não).
+
+  Em relação a navegação temos:
+  - "Todo" = página para criação e listagem de "todos";
+  - "Notes" = página para a criação e listagem de "notas";
+  - "Settings" = página de configuração dos usuário;
+*/
+
 const Tab = createBottomTabNavigator();
 
 export default function MainScreenNavigation({navigation}) {
 
+  // Recebimento dos "contestos" para aplicar o darktheme ou definir uma seção como online
   const darkTheme = useContext(AppContext).darkTheme;
   const onlineSession = useContext(AppContext).onlineSession; 
 
+  // Verifica se o usuário está logado na seção "online" ou não
   if (onlineSession) {
     navigation.setOptions({
       title: "Notcha - " + "Furret",

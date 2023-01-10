@@ -1,3 +1,8 @@
+/*
+  Neste arquivo são definidas algumas constantes
+  referentes as cores usadas na aplicação.
+*/
+
 export const MaterialColors = {
     Primary500: "#6200EE",
     Primary200: "#BB86FC",

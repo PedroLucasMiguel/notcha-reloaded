@@ -15,8 +15,14 @@ import { MaterialColors } from "../resources/MaterialColors"
 import { AppContext } from "../Context"
 import { AnimatedFAB } from "react-native-paper"
 
+/*
+  Neste arquivo é definida a página de login do usuário
+*/
+
 export default function LoginScreen({navigation}) {
 
+  // Recebimento dos "contextos" de seção online, darktheme, e definição de estados para os componentes da
+  // aplicação
   const darkTheme = useContext(AppContext).darkTheme;
   const setOnlineSession = useContext(AppContext).setOnlineSession;
   const [fabExpand, setFabExpand] = useState(false);
@@ -24,6 +30,7 @@ export default function LoginScreen({navigation}) {
   let view_style;
   let title_style;
 
+  // Verificação de qual tema deve ser usado
   if (darkTheme) {
     view_style = Styles.DtLoginView;
     title_style = Styles.DtLoginTitle;
@@ -34,9 +41,9 @@ export default function LoginScreen({navigation}) {
 
   return (
     <View style={ view_style }>
-      <Text style={ title_style }> Welcome to Notcha! </Text>
+      <Text style={ title_style }> Welcome to </Text>
       <Image 
-        source={ require("../resources/images/temp_logo.png") } 
+        source={ require("../resources/images/Logo.png") } 
         style={ Styles.AppLogo }
       />
       <PrimaryButton 

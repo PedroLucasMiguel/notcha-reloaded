@@ -15,6 +15,11 @@ import { AppContext } from "../Context";
 import { ButtonOverBar, IconButton } from "../resources/components/MaterialComponents";
 import { MaterialColors } from "../resources/MaterialColors";
 
+/*
+  Neste arquivo é definida a página de criação e listagem de notas do usuário
+*/
+
+// Função responsável por gerar botões "fake" para preencher espaço na aplicação
 function generateFakeButtons(n, navigation) {
   let btns = []
 
@@ -47,12 +52,14 @@ function generateFakeButtons(n, navigation) {
 
 export default function UserNotes({ navigation }) {
 
+  // Recebimento dos "contexto" de tema
   const darkTheme = useContext(AppContext).darkTheme;
 
   let view_style;
   let sview_style;
   let title_style;
 
+  // Verificação de qual tema deve ser usado
   if (darkTheme) {
     view_style = Styles.DtView;
     sview_style = Styles.DtScrollView;

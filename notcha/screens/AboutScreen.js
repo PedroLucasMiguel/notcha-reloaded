@@ -4,27 +4,31 @@ import {
   Text,
   StyleSheet,
   Dimensions,
+  Image,
 } from "react-native";
 import { AppContext } from "../Context";
 import Separator from "../resources/components/Separator";
 import { MaterialColors } from "../resources/MaterialColors";
 
+/*
+  Neste arquivo é definida a página de "sobre" da aplicação
+*/
+
 export default function AboutScreen() {
 
+  // Recebimento do "contexto" de tema
   const darkTheme = useContext(AppContext).darkTheme;
 
-  let title_style;
   let subtitle_style;
   let text_style;
   let view_style;
 
+  // Verificação de qual tema deve ser usado
   if (darkTheme) {
-    title_style = Styles.DtTtile;
     subtitle_style = Styles.DtSubTtile;
     text_style = Styles.DtText;
     view_style = Styles.DtView;
   } else {
-    title_style = Styles.WtTtile;
     subtitle_style = Styles.WtSubTtile;
     text_style = Styles.WtText;
     view_style = Styles.WtView;
@@ -33,7 +37,10 @@ export default function AboutScreen() {
   return(
     <View style={[view_style, { height: Dimensions.get("window").height }]}>
       <View style={ view_style }>
-        <Text style={ title_style }>Notcha!</Text>
+        <Image 
+          source={ require("../resources/images/Logo.png") } 
+          style={ Styles.AppLogo }
+        />
         <Text style={ subtitle_style }>Made with 💜 By:</Text>
         <Text style={ text_style }>Ana Ligia Mendes</Text>
         <Text style={ text_style }>Julia Tadei Oliveira</Text>
@@ -67,23 +74,6 @@ const Styles = StyleSheet.create({
     backgroundColor: MaterialColors.BackgroundWhite,
   },
 
-  DtTtile: {
-    alignSelf: "center",
-    fontSize: 50,
-    fontWeight: "bold",
-    color: MaterialColors.WhiteText,
-    paddingBottom: 10,
-    
-  },
-
-  WtTtile: {
-    alignSelf: "center",
-    fontSize: 50,
-    fontWeight: "bold",
-    color: MaterialColors.BlackText,
-    paddingBottom: 10,
-  },
-
   DtSubTtile: {
     alignSelf: "center",
     fontSize: 35,
@@ -108,5 +98,13 @@ const Styles = StyleSheet.create({
     alignSelf: "center",
     fontSize: 20,
     color: MaterialColors.BlackText,
-  }
+  },
+
+  AppLogo: {
+    width: 150,
+    height: 150,
+    alignSelf: "center",
+    marginBottom: 10,
+  },
+  
 });

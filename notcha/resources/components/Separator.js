@@ -3,12 +3,20 @@ import React, { useContext, useState, useEffect } from "react"
 import { View, Text, StyleSheet } from "react-native"
 import { MaterialColors } from "../MaterialColors";
 
+/*
+  Neste arquivo sé definido um componente "Separator" que funciona como um separador cosmético.
+
+  A seguir é apresentado um exemplo de como ele se apresenta na aplicação:
+    ---------- Exemplo -----------
+
+*/
 
 export default function Separator(props) {
 
   let line_style;
   let text_style;
 
+  // Definição do tema
   if(props.darkTheme) {
     line_style = Styles.DtLine;
     text_style = Styles.DtText;

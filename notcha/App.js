@@ -11,6 +11,18 @@ import TodoEditor from "./screens/editors/TodoEditor";
 import NoteEditor from "./screens/editors/NoteEditor";
 import AboutScreen from "./screens/AboutScreen";
 
+/*
+  Neste aquivo está definido o modelo de navegação principal do APP.
+  No caso, usamos uma navegação do tipo "stack", em que:
+
+  - "Login" = Tela de login (Pagina padrão);
+  - "MainScreenNavigation" = Navegação entre as telas de notas, todos e configurações;
+  - "TodoEditor" = Editor e visualizador de "todos";
+  - "NoteEditor" = Editor e visualizador de "notas";
+  - "AboutScreen" = Tela de "sobre";
+
+*/
+
 const Stack = createNativeStackNavigator();
 
 export default function app() {

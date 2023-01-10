@@ -5,19 +5,26 @@ import { actions, RichEditor, RichToolbar } from "react-native-pell-rich-editor"
 import { AppContext } from "../../Context";
 import { MaterialColors } from "../../resources/MaterialColors";
 
+/*
+  Neste arquivo é definida a página de edição/visualização de notas
+*/
+
 export default function NoteEditor({ route, navigation }) {
 
+  // Recebimento de "informação fake" para preencher o componente
   let fakeData = undefined;
 
   if (route.params !== undefined)
     fakeData = route.params.fakeData;
 
+  // Recebimento do "contexto" darktheme, e definição de estados para os componentes da aplicação
   const darkTheme = useContext(AppContext).darkTheme;
   const richText = useRef(null);
   const editorView = useRef(null);
   const [editorText, setEditorText] = useState((fakeData !== undefined) ? fakeData.content : "");
   const [noteName, setNoteName] = useState((fakeData !== undefined) ? fakeData.title : "")
 
+  // Verificação de qual tema deve ser usado
   let view_theme = darkTheme ? Styles.DtBackgroundColor : Styles.WtBackgroundColor;
 
   return(

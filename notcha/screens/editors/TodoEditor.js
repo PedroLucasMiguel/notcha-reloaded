@@ -7,8 +7,14 @@ import BouncyCheckbox from "react-native-bouncy-checkbox";
 import { MaterialColors } from "../../resources/MaterialColors";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 
+/*
+  Neste arquivo é definida a página de edição/visualização de notas
+*/
+
+// Função que retorna o componente de "checkbox" da lista de "todos"
 function TodoCheckBox(props) {
 
+  // Verifica qual tema deve ser aplicado
   const darkTheme = props.darkTheme;
   const [isChecked, setIsChecked] = useState(props.checked);
 
@@ -49,16 +55,19 @@ function TodoCheckBox(props) {
 
 export default function TodoEditor({ route, navigation }) {
 
+  // Recebimento de "informação fake" para preencher o componente
   let fakeData = undefined;
 
   if (route.params !== undefined)
     fakeData = route.params.fakeData;
 
+     // Recebimento do "contexto" darktheme, e definição de estados para os componentes da aplicação
   const darkTheme = useContext(AppContext).darkTheme;
   const [todoListName, setTodoListName] = useState((fakeData !== undefined) ? fakeData.title : "");
   const [itemName, setItemName] = useState("");
   const [items, setItems] = useState([]);
 
+  // Caso exista "fakeData", preenche a tela com essa informação
   useEffect(() => {
     console.log(fakeData)
     if (fakeData !== undefined) {
@@ -75,6 +84,7 @@ export default function TodoEditor({ route, navigation }) {
     }
   }, [])
 
+  // Verificação de qual tema deve ser usado
   let view_theme = darkTheme ? Styles.DtBackgroundColor : Styles.WtBackgroundColor;
 
   return(

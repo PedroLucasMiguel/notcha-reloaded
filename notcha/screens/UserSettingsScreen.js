@@ -14,13 +14,19 @@ import {
 import { AppContext } from "../Context";
 import { MaterialColors } from "../resources/MaterialColors"
 
+/*
+  Neste arquivo é definida a página de "configurações" do usuário
+*/
+
 export default function UserSettings() {
 
+  // Recebimento dos "contextos" de seção online, darktheme, e definição de estados para os componentes da
+  // aplicação
   const onlineSession = useContext(AppContext).onlineSession;
-  console.log(onlineSession);
   const { darkTheme, setDarkTheme } = useContext(AppContext);
   const [dtSwitchIsEnable, setDtSwitchIsEnable] = useState(darkTheme);
 
+  // Verificação de qual tema deve ser usado
   let title_style = Styles.DtSectionTitle;
   let section_style = Styles.DtSection;
   let options_style = Styles.DtOptionText;
